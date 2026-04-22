@@ -25,6 +25,13 @@ export async function registerRoutes(
 
   await storage.seedIfEmpty();
 
+  const { rows } = await pool.query(`
+    SELECT column_name 
+    FROM information_schema.columns 
+    WHERE table_name = 'cuisine_tags'
+  `);
+
+console.log("CUISINE TAGS COLUMNS:", rows);
   // кухни
   await pool.query(`
     INSERT INTO cuisine_tags (id, label)
