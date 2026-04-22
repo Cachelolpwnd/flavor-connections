@@ -27,7 +27,7 @@ export async function registerRoutes(
 
   // кухни
   await pool.query(`
-    INSERT INTO cuisine_tags (id, name)
+    INSERT INTO cuisine_tags (id, label)
     VALUES
     ('italian', 'Итальянская'),
     ('french', 'Французская'),
@@ -37,10 +37,10 @@ export async function registerRoutes(
     ON CONFLICT DO NOTHING;
   `);
 
-  // debug рецепт (можешь удалить позже)
+  // debug рецепт
   await pool.query(`
     INSERT INTO recipes (id, name, category, ingredients_raw)
-    VALUES ('debug-recipe', 'DEBUG RECIPE', 'test', 'tomato')
+    VALUES ('debug-recipe', 'DEBUG RECIPE', ''italian'', 'tomato')
     ON CONFLICT DO NOTHING;
   `);
 
