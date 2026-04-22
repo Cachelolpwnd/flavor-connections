@@ -44,6 +44,12 @@ console.log("CUISINE TAGS COLUMNS:", rows);
   ON CONFLICT DO NOTHING;
   `);
 
+  await pool.query(`
+    INSERT INTO ingredient_cuisine_tags (ingredient_id, cuisine_tag_id)
+    SELECT id, 'italian' FROM ingredients LIMIT 50
+    ON CONFLICT DO NOTHING;
+  `);
+
   // debug рецепт
   await pool.query(`
     INSERT INTO recipes (id, name, category, ingredients_raw)
