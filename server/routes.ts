@@ -22,7 +22,6 @@ export async function registerRoutes(
 
   console.log("SEED RUNNING");
   await storage.seedIfEmpty();
-}
 
   app.get(api.ingredients.list.path, async (req, res) => {
     const input = api.ingredients.list.input?.parse(req.query);
