@@ -17,7 +17,12 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express,
 ): Promise<Server> {
-  if (process.env.NODE_ENV !== "production" || process.env.FORCE_SEED === "true") {
+  console.log("ENV:", process.env.NODE_ENV, process.env.FORCE_SEED);
+  if (
+    process.env.NODE_ENV !== "production" || 
+    process.env.FORCE_SEED === "true"
+  ) {
+  console.log("SEED RUNNING");
   await storage.seedIfEmpty();
 }
 }
