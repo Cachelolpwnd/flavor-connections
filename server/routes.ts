@@ -17,8 +17,9 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express,
 ): Promise<Server> {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== "production" || process.env.FORCE_SEED === "true") {
   await storage.seedIfEmpty();
+}
 }
 
   app.get(api.ingredients.list.path, async (req, res) => {
