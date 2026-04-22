@@ -20,10 +20,16 @@ export async function registerRoutes(
   console.log("ENV:", process.env.NODE_ENV, process.env.FORCE_SEED);
   console.log("ENV:", process.env.NODE_ENV, process.env.FORCE_SEED);
 
-  console.log("SEED RUNNING");
   try {
   console.log("SEED RUNNING");
+
   await storage.seedIfEmpty();
+
+  await pool.query(`
+    INSERT INTO recipes (id, name, category, ingredients_raw)
+    VALUES ('debug-recipe', 'DEBUG RECIPE', 'test', 'tomato')
+    ON CONFLICT DO NOTHING;
+`);
   console.log("SEED DONE");
 } catch (err) {
   console.error("SEED ERROR:", err);
