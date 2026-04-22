@@ -21,7 +21,13 @@ export async function registerRoutes(
   console.log("ENV:", process.env.NODE_ENV, process.env.FORCE_SEED);
 
   console.log("SEED RUNNING");
+  try {
+  console.log("SEED RUNNING");
   await storage.seedIfEmpty();
+  console.log("SEED DONE");
+} catch (err) {
+  console.error("SEED ERROR:", err);
+}
 
   app.get(api.ingredients.list.path, async (req, res) => {
     const input = api.ingredients.list.input?.parse(req.query);
