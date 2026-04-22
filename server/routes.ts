@@ -18,13 +18,10 @@ export async function registerRoutes(
   app: Express,
 ): Promise<Server> {
   console.log("ENV:", process.env.NODE_ENV, process.env.FORCE_SEED);
-  if (
-    process.env.NODE_ENV !== "production" || 
-    process.env.FORCE_SEED === "true"
-  ) {
+  console.log("ENV:", process.env.NODE_ENV, process.env.FORCE_SEED);
+
   console.log("SEED RUNNING");
   await storage.seedIfEmpty();
-}
 }
 
   app.get(api.ingredients.list.path, async (req, res) => {
