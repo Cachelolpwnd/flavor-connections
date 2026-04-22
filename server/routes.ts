@@ -25,12 +25,27 @@ export async function registerRoutes(
 
   await storage.seedIfEmpty();
 
+  // кухни
+  await pool.query(`
+    INSERT INTO cuisine_tags (id, name)
+    VALUES
+    ('italian', 'Итальянская'),
+    ('french', 'Французская'),
+    ('japanese', 'Японская'),
+    ('russian', 'Русская'),
+    ('mexican', 'Мексиканская')
+    ON CONFLICT DO NOTHING;
+  `);
+
+  // debug рецепт (можешь удалить позже)
   await pool.query(`
     INSERT INTO recipes (id, name, category, ingredients_raw)
     VALUES ('debug-recipe', 'DEBUG RECIPE', 'test', 'tomato')
     ON CONFLICT DO NOTHING;
-`);
+  `);
+
   console.log("SEED DONE");
+
 } catch (err) {
   console.error("SEED ERROR:", err);
 }
