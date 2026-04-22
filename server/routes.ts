@@ -17,7 +17,9 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express,
 ): Promise<Server> {
+  if (process.env.NODE_ENV !== "production") {
   await storage.seedIfEmpty();
+}
 
   app.get(api.ingredients.list.path, async (req, res) => {
     const input = api.ingredients.list.input?.parse(req.query);
