@@ -34,14 +34,14 @@ export async function registerRoutes(
 console.log("CUISINE TAGS COLUMNS:", rows);
   // кухни
   await pool.query(`
-    INSERT INTO cuisine_tags (id, label)
-    VALUES
-    ('italian', 'Итальянская'),
-    ('french', 'Французская'),
-    ('japanese', 'Японская'),
-    ('russian', 'Русская'),
-    ('mexican', 'Мексиканская')
-    ON CONFLICT DO NOTHING;
+  INSERT INTO cuisine_tags (id, name_ru, name_en)
+  VALUES
+    ('italian', 'Итальянская', 'Italian'),
+    ('french', 'Французская', 'French'),
+    ('japanese', 'Японская', 'Japanese'),
+    ('russian', 'Русская', 'Russian'),
+    ('mexican', 'Мексиканская', 'Mexican')
+  ON CONFLICT DO NOTHING;
   `);
 
   // debug рецепт
