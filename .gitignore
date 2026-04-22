@@ -5,3 +5,4 @@ server/public
 vite.config.ts.*
 *.tar.gz"attached_assets/*.zip" 
 attached_assets/Flavor-Atlas_1770744998177.zip 
+attached_assets/*.csv

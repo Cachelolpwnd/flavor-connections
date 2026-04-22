@@ -4,7 +4,7 @@ import { Pool } from "pg";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-const CSV_PATH = "/tmp/recipes_import/povarenok_recipes_2021_06_16.csv";
+const CSV_PATH = "attached_assets/povarenok_recipes_2021_06_16.csv";
 const BATCH_SIZE = 500;
 const COOCCURRENCE_FLUSH_EVERY = 5000;
 
